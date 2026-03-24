@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  composer_image:
+    build: .
+    ports:
+      - "3000:5002"
+    # Define variáveis de ambiente
+    environment:
+      - FLASK_APP=main.py
+    # Monta o diretório atual no /app do container
+    volumes:
+      - .:/app
+    # Reinicia automaticamente a aplicação caso ela pare
+    restart: unless-stopped
