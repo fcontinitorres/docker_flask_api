@@ -1,16 +1,19 @@
 # docker_flask_api
 Flask Docker API - Uma API simples em Python usando Flask, containerizada com Docker e Docker Compose.
 
-Comandos DockerFile
+## Descrição Projeto
 
-Criar uma iamgem a partir do dockerFile
+
+### Comandos DockerFile
+
 - docker build . -t "nome_imagem"
+    > Criar uma imagem a partir do dockerFile
 
-Criando o container a partir da imagem
 - docker run --name="nome_imagem" -p=3000:5002 "nome_container"
+    > Criando o container a partir da imagem
 
-Inicializando um container já criado
-- docker start 92ff467b49f05f1d38b398747729d20813fa5c3578d397299f45da05f219aeba
+- docker start "nome_ou_id_container"
+    > Inicializando um container já criado
 
-Parando um container inicializado
-- docker stop 92ff467b49f05f1d38b398747729d20813fa5c3578d397299f45da05f219aeba
+- docker stop "nome_ou_id_container"
+    > Parando um container inicializado
