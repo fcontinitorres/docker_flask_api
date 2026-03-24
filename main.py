@@ -51,7 +51,3 @@ app.run
 
 """
 
-# docker build . -t fcontinitorres/docker_python_flash_api (criando uma iamgem a partir do dockerFile)
-# docker run --name=docker_python_flash_api -p=3000:5002 fcontinitorres/docker_python_flash_api (criando o container a partir da imagem)
-# docker start 92ff467b49f05f1d38b398747729d20813fa5c3578d397299f45da05f219aeba (rodar novamente o container)
-# docker stop 92ff467b49f05f1d38b398747729d20813fa5c3578d397299f45da05f219aeba (parar o container)
