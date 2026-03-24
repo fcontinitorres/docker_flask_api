@@ -12,3 +12,4 @@ Inicializando um container já criado
 Parando um container inicializado
 - docker stop 92ff467b49f05f1d38b398747729d20813fa5c3578d397299f45da05f219aeba
 
+Outra modificação extra para dar conflito.
