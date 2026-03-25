@@ -17,3 +17,6 @@ Flask Docker API - Uma API simples em Python usando Flask, containerizada com Do
 
 - docker stop "nome_ou_id_container"
     > Parando um container inicializado
+
+- Exetar o docker compose
+    > docker compose up

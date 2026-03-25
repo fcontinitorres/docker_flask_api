@@ -1,18 +1,3 @@
-# From framework flask, import Flask class
-from flask import Flask
-from jinja2.utils import markupsafe
-
-# Create an instance of Flask class. __name__ is a special variable in Python that holds the name of the current module. 
-app = Flask(__name__)
-
-@app.route('/')
-def hello():
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    # Run the application on all available network interfaces
-    app.run(host='0.0.0.0', port=5002)
-
 """
 Deifnicação da API
 
@@ -40,14 +25,28 @@ Regras de Negócio
 3. O nome deve ser uma string não vazia.
 """
 
+# From framework flask, import Flask class
+from flask import Flask, jsonify
+from jinja2.utils import markupsafe
 
-"""
+# Create an instance of Flask class. __name__ is a special variable in Python that holds the name of the current module. 
+app = Flask(__name__)
+
+lista_pessoas = [
+    {"id": 1, "nome": "Felipe", "idade": 30},
+    {"id": 2, "nome": "Julia", "idade": 25}
+]
+
+@app.route('/')
+def hello():
+    return 'Hello, World!'
+
 @app.route('/pessoas', methods=['GET'])
 def get_pessoas():
-    return 'Lista de pessoas'
+    return jsonify(lista_pessoas)
 
 # Running the application. Making it available.
-app.run
-
-"""
+if __name__ == '__main__':
+    # Run the application on all available network interfaces
+    app.run(host='0.0.0.0', port=5002)
 
