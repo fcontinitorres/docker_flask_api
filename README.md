@@ -20,3 +20,10 @@ Flask Docker API - Uma API simples em Python usando Flask, containerizada com Do
 
 - Exetar o docker compose
     > docker compose up
+
+### Terminal Commands
+#### Teste API no terminal
+> curl -X POST http://localhost:3000/pessoa
+> curl -X POST http://localhost:3000/pessoa -H "Content-Type: application/json" -d '{"nome": "João", "idade": 30}'
+
+Obs: Nunca usar aspas simples na criação de um json!

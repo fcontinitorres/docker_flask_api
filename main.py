@@ -26,7 +26,7 @@ Regras de Negócio
 """
 
 # From framework flask, import Flask class
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from jinja2.utils import markupsafe
 
 # Create an instance of Flask class. __name__ is a special variable in Python that holds the name of the current module. 
@@ -41,12 +41,20 @@ lista_pessoas = [
 def hello():
     return 'Hello, World!'
 
+# Define a route for the endpoint /pessoas that accepts GET requests
 @app.route('/pessoas', methods=['GET'])
 def get_pessoas():
     return jsonify(lista_pessoas)
+
+# Define a route for the endpoint /pessoa that accepts POST 
+# Body: {'id': 3, 'nome': 'Maria', 'idade': 28 }
+@app.route('/pessoa', methods=['POST'])
+def criar_pessoa():
+    pessoa = request.json
+    lista_pessoas.append(pessoa)
+    return jsonify(lista_pessoas), 201
 
 # Running the application. Making it available.
 if __name__ == '__main__':
     # Run the application on all available network interfaces
     app.run(host='0.0.0.0', port=5002)
-
