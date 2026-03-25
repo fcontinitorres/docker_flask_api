@@ -31,6 +31,8 @@ from jinja2.utils import markupsafe
 
 # Create an instance of Flask class. __name__ is a special variable in Python that holds the name of the current module. 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
+
 
 lista_pessoas = [
     {"id": 1, "nome": "Felipe", "idade": 30},
@@ -47,12 +49,20 @@ def get_pessoas():
     return jsonify(lista_pessoas)
 
 # Define a route for the endpoint /pessoa that accepts POST 
-# Body: {'id': 3, 'nome': 'Maria', 'idade': 28 }
+# Body: {"id": 3, "nome": "Maria", "idade": 28 }
 @app.route('/pessoa', methods=['POST'])
 def criar_pessoa():
     pessoa = request.json
     lista_pessoas.append(pessoa)
-    return jsonify(lista_pessoas), 201
+    return jsonify( mensagem = 'Pessoa cadastrada', lista_de_pessoas = lista_pessoas), 201
+
+@app.route('/pessoa/<int:id>', methods=['DELETE'])
+def excluir_pessoa(id):
+    for pessoa in lista_pessoas:
+        if pessoa['id'] == id:
+            lista_pessoas.remove(pessoa)
+            return jsonify(mensagem = 'Pessoa excluída', lista_de_pessoas = lista_pessoas), 200
+    return jsonify(mensagem = 'Pessoa não encontrada'), 404
 
 # Running the application. Making it available.
 if __name__ == '__main__':
