@@ -14,9 +14,8 @@ POST /pessoa: Cria uma nova pessoa.
     }
     Respostas:
     - Sucesso: 201 Createdo
-    - Erro: 400 Bad Request - A API não entendeu a requisição
     - Unprocessable Entity: 422 se não passar em alguma validação - Obs: Sem nenhum corpo.
-DELETE /pessoas/ Exclui uma pessoa pelo ID.
+DELETE /pessoa/<int:id>: Exclui uma pessoa pelo ID.
 GET /estatisticas: Retorna estatísticas sobre as pessoas cadastradas.
 
 Regras de Negócio
@@ -53,6 +52,24 @@ def get_pessoas():
 @app.route('/pessoa', methods=['POST'])
 def criar_pessoa():
     pessoa = request.json
+    
+    # Verificar se o JSON tem exatamente as chaves 'id', 'nome', 'idade'
+    required_keys = {'id', 'nome', 'idade'}
+    if set(pessoa.keys()) != required_keys:
+        return '', 422
+    
+    # Verificar se id é um inteiro
+    if not isinstance(pessoa['id'], int):
+        return '', 422
+    
+    # Verificar se nome é uma string não vazia
+    if not isinstance(pessoa['nome'], str) or not pessoa['nome'].strip():
+        return '', 422
+    
+    # Verifica se a idade é um valor positivo
+    if pessoa["idade"] <= 0:
+        return '', 422
+
     lista_pessoas.append(pessoa)
     return jsonify( mensagem = 'Pessoa cadastrada', lista_de_pessoas = lista_pessoas), 201
 
