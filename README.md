@@ -3,6 +3,32 @@ Flask Docker API - Uma API simples em Python usando Flask, containerizada com Do
 
 ## Descrição Projeto
 
+Este projeto é uma API simples em Python usando Flask, empacotada em Docker. Ele serve como exemplo de uma aplicação pequena e funcional, com endpoints para gerenciar pessoas em memória.
+
+### Arquitetura
+
+- Arquitetura monolítica simples
+- Toda a lógica está em um único serviço/API (`main.py`)
+- Não há banco de dados externo; os dados são armazenados em uma lista Python em memória
+- Adequado para projetos de demonstração, protótipos e APIs pequenas
+
+### Funcionalidades
+
+- `GET /pessoas`: retorna a lista de pessoas cadastradas
+- `POST /pessoa`: cadastra uma nova pessoa com `id`, `nome` e `idade`
+- `DELETE /pessoa/<id>`: remove uma pessoa pelo identificador
+
+### Como funciona o código
+
+- `main.py` cria a aplicação Flask e define os endpoints
+- A lista `lista_pessoas` mantém os registros em memória
+- O `POST /pessoa` valida os dados antes de adicionar uma pessoa
+- O `DELETE /pessoa/<id>` busca e elimina o registro correspondente
+
+### Ferramentas e tecnologias
+
+- Flask 3.x: framework web para Python
+- Docker: empacotamento da aplicação em contêiner
 
 ### Comandos DockerFile
 
@@ -20,10 +46,3 @@ Flask Docker API - Uma API simples em Python usando Flask, containerizada com Do
 
 - Exetar o docker compose
     > docker compose up
-
-### Terminal Commands
-#### Teste API no terminal
-> curl -X POST http://localhost:3000/pessoa
-> curl -X POST http://localhost:3000/pessoa -H "Content-Type: application/json" -d '{"nome": "João", "idade": 30}'
-
-Obs: Nunca usar aspas simples na criação de um json!
